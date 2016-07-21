@@ -15,11 +15,12 @@ void main() {
 	float y = v_texCoords.y;
 
 	vec2 offset = vec2(1.0, 1.0) / u_size;
-	float cuttoffHigh = 1.0 - (u_size.y * offset.y * u_tiltPercentage / 2.0);
-	float cuttoffLow = 0.0 + (u_size.y * offset.y * u_tiltPercentage / 2.0);
+	float cutoffHigh = 1.0 - (u_size.y * offset.y * u_tiltPercentage / 2.0);
+	float cutoffLow = 0.0 + (u_size.y * offset.y * u_tiltPercentage / 2.0);
 
-	if (y < cuttoffLow || y > cuttoffHigh) {
-		float cutoffDistance = y < cuttoffLow ? cuttoffLow - y : y - cuttoffHigh;
+	// check if the fragment falls within the blur cutoff.
+	if (y < cutoffLow || y > cutoffHigh) {
+		float cutoffDistance = y < cutoffLow ? cutoffLow - y : y - cutoffHigh;
 		vec2 multiplier = u_dimension / u_size * cutoffDistance * 10.0;
 
 		// 9 tap gaussian
