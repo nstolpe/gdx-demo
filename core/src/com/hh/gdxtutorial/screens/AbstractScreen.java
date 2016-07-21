@@ -12,12 +12,11 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * Abstract screen class that implements stubs for Screen methods.
- *
  */
 public abstract class AbstractScreen implements Screen {
 	// loading state. true until switched off.
 	protected boolean loading = true;
-	// transparent black clear color.
+	// default to a transparent black clear color.
 	protected Color clearColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
 
 	@Override
@@ -52,7 +51,8 @@ public abstract class AbstractScreen implements Screen {
 
 	/**
 	 * Trigger after assets have been loded to do things like
-	 * create model instances.
+	 * create model instances. Be sure to call super.doneLoading()
+	 * or set loading to false in inheritted classes.
 	 */
 	public void doneLoading() {
 		loading = false;
